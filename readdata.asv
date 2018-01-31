@@ -1,0 +1,7 @@
+function readdata(filename)
+hdr = ft_read_header(filename);
+fs = hdr.Fs
+samples = hdr.nSamples
+nchans = hdr.nChans
+nsamples
+
