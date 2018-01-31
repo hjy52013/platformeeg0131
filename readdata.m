@@ -2,6 +2,7 @@ function EEG = readdata(filename)
 EEG = emptyEEG();
 hdr = ft_read_header(filename);
 
+EEG.filePath  = filename;
 EEG.Fs        = hdr.Fs;
 EEG.nChans    = hdr.nChans;
 EEG.nSamples  = hdr.nSamples;

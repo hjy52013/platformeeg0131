@@ -96,12 +96,20 @@ function file_put_Callback(hObject, eventdata, handles)
 % hObject    handle to file_put (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[FileName,PathName] = uigetfile('*.eeg','选择数据文件');
-Filename = strcat(PathName,FileName);
-EEG = readdata(Filename);
-assignin('base','EEG',EEG);
-handles.eeg = EEG;
-guidata(hObject, handles);
+[FileName,PathName] = uigetfile('*.eeg;*.set','选择数据文件');
+if ~isequal(FileName,0)
+    Filename = strcat(PathName,FileName);
+    EEG = readdata(Filename);
+    assignin('base','EEG',EEG);
+    s = stringPro();
+    set(handles.main_right,'String',s);
+    set(handles.welcome,'Visible','Off');
+    set(handles.main_datasetname,'Visible','On');
+    set(handles.main_left,'Visible','On');
+    set(handles.main_right,'Visible','On');
+    handles.eeg = EEG;
+    guidata(hObject, handles);
+end
 
 
 
