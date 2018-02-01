@@ -101,12 +101,12 @@ if ~isequal(FileName,0)
     Filename = strcat(PathName,FileName);
     EEG = readdata(Filename);
     assignin('base','EEG',EEG);
-    s = stringPro();
-    set(handles.main_right,'String',s);
-    set(handles.welcome,'Visible','Off');
-    set(handles.main_datasetname,'Visible','On');
-    set(handles.main_left,'Visible','On');
-    set(handles.main_right,'Visible','On');
+%     s = stringPro();
+%     set(handles.main_right,'String',s);
+%     set(handles.welcome,'Visible','Off');
+%     set(handles.main_datasetname,'Visible','On');
+%     set(handles.main_left,'Visible','On');
+%     set(handles.main_right,'Visible','On');
     handles.eeg = EEG;
     guidata(hObject, handles);
 end

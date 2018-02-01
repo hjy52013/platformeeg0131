@@ -1,1 +1,0 @@
-Statistics与AUCStatistics基本功能相同，区别在于AUCStatistics处理单个文件，Statistics处理多个文件，AUCStatistics没有AUC的功能。
