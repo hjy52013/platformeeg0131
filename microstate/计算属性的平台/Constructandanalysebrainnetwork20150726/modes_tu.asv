@@ -1,0 +1,26 @@
+function  modes_tu()
+%功能描述：X轴表示的n
+%         Y轴表示的是r
+%         Z轴表示的是对应网络的全局效率
+%         最终画出三维的图像
+%X=1:1:351;
+ %Y=1:1:351;
+X=1:5:351;
+ Y=1:5:351;
+ readlist=load('F:\解剖领域的功能网络\propetry\CNN\global\modesgolbal.mat');
+ P=readlist.golbal;
+%[m n]=size(readlist);
+for i=1:71
+    for j=1:71
+       Z(i,j)=P(i,j); 
+    end
+end
+ %mesh(X,Y,Z);
+ surf(X,Y,Z);
+ %AXIS([0 360 0 360 0.3 0.45]);
+% plot3(456,345,0.35,'*','MarkerSize',20,'color',[rand,rand,rand]);
+ % xlabel('x轴线');
+ % ylabel('y轴线');
+ % zlabel('z轴线');
+  %title('西安地区PM2.5的时空分布图');
+end

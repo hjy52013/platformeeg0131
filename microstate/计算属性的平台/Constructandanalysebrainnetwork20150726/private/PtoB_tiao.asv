@@ -1,0 +1,23 @@
+function ptob = PtoB_tiao(dataPath,sparsitysta,sparsityend,step,newname)
+readlist=dir(strcat(dataPath,'\*.mat'));
+[m n]=size(readlist);
+for fileNum=1:m
+matName=readlist(fileNum,1).name;
+matPath=strcat(dataPath,'\',matName); 
+FolderName=matName(1:18)
+for p=sparsitysta:step:sparsityend
+knum=p;
+knum=round(knum)
+b=load(matPath);
+for i=1:knum
+    b.sortb(i,3)=1;
+    a(i,:)=b.sortb(i,:);
+end
+fileName=strcat('BSortCon',num2str(p))
+filePath=mkdir(strcat(newname,'\','B',FolderName))
+save(strcat(newname,'\','B',FolderName,'/',fileName),'a')
+a=[]
+end
+end 
+ptob = dataPath;
+end

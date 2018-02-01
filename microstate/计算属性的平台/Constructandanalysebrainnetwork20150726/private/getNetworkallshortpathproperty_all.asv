@@ -1,0 +1,42 @@
+function getNetworkallshortpathproperty_all( FolderPath,OutPath,filename_file1,filename,sparsity,pfirst,plast,pstep)
+%UNTITLED Summary of this function goes here
+%   2011.10.25
+FolderNamelist=dir(FolderPath);
+[Fm Fn]=size(FolderNamelist);
+mkdir(strcat(OutPath,'\','shortpath'));
+lie=1;
+for FolderNum=pfirst:pstep:plast
+    FolderName= strcat('\',filename_file1,num2str(FolderNum))
+    if FolderName ~= '.'
+      
+        dataPath=strcat(FolderPath,FolderName);
+%         readlist=dir(strcat(dataPath,'\*.mat'));
+   
+        i=1;
+      for filenum=pfirst:pstep:plast
+            
+          fileName=strcat(filename,num2str(filenum),'.mat');
+           
+            
+          file=strcat(dataPath,'\',fileName)
+           
+            b=importdata(file)
+           
+            D = all_shortest_paths(b);
+            %对角线上的0将使得调和平均数的结果变为0，因此将对角线上的数据改为无穷大
+            %调和平均数=1/(1/A+1/B+1/C+1/D+....),因此无穷大的数据对调和平均数没有影响
+            [k1 k2]=size(D );
+            for j=1:k1
+                D(j,j)=inf;
+            end
+            S=harmmean(D);
+            SPL=harmmean(S);
+            SPLMDD(i,lie)=SPL;
+           i=i+1;
+        end
+        b=[];
+%     end
+    lie=lie+1;
+end
+save(strcat(OutPath,'\','shortpath\','shortpath.mat'),'SPLMDD');
+
